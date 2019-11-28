@@ -1,3 +1,5 @@
+'''Removed my SQL and Spotify Login info'''
+
 import spotipy
 import spotipy.util as util
 from spotipy.oauth2 import SpotifyClientCredentials 
@@ -10,9 +12,9 @@ class MySQLCon:
     def __init__(self):
         '''Your MySQL login configuration'''
         
-        self._host = 'localhost' #host
-        self._user = 'root' #user
-        self._password = 'abdullah1439' #password
+        self._host = #host
+        self._user = #user
+        self._password = #password
         self._charset = 'utf8'
         self._unicode = True
         self._con = mdb.connect(host = self._host, 
@@ -119,14 +121,14 @@ class MySQLCon:
 class Spotify_Interface:
     
     def __init__(self):
-        self._client_id = "09c567afd5784427b568ce3994c57bbc" #your client id (issued by Spotify API)
-        self._client_secret = "626ee57c77b540a882e77568b96cf647" #client secret (issued by Spotify API)
+        self._client_id = #your client id (issued by Spotify API)
+        self._client_secret = #client secret (issued by Spotify API)
 
         # my personal spotify user_id and playlist_id for two playlists
 
-        self._abd_id = '22zwjgjvsa7o3q6himwitxuoy' # user id
-        self._playlist_liked = '6FtbP15dhhD6iEVbW4xiB4' # playlist id
-        self._playlist_disliked = '0VfCY7JcZtG0P66SEHnMhr' # playlist id
+        self._abd_id = # user id
+        self._playlist_liked = # playlist id
+        self._playlist_disliked = # playlist id
         #self._sp = spotipy.Spotify() 
         
     def establish_spotify_connection(self):
@@ -135,8 +137,8 @@ class Spotify_Interface:
         sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
         scope = 'user-library-read playlist-read-private'
         token = util.prompt_for_user_token(username, scope='user-library-read playlist-read-private',\
-                                           client_id="09c567afd5784427b568ce3994c57bbc",\
-                                           client_secret="626ee57c77b540a882e77568b96cf647", \
+                                           client_id="<client id>",\
+                                           client_secret="<client secret>", \
                                            redirect_uri='https://localhost:8888/callback/')
         if token:
             sp = spotipy.Spotify(auth=token)
@@ -144,7 +146,7 @@ class Spotify_Interface:
         else:
             print("Can't get token for", username)
             
-    def fetch_songs(self, playlist_id, user_id='22zwjgjvsa7o3q6himwitxuoy'): #append the results in a list
+    def fetch_songs(self, playlist_id, user_id='<user_id>'): #append the results in a list
         sp = self.establish_spotify_connection() #only call this
         sourcePlaylist = sp.user_playlist(user_id, playlist_id)
         tracks = sourcePlaylist["tracks"]
@@ -189,15 +191,6 @@ class Spotify_Interface:
  
     
 if __name__ == '__main__':
-    '''client_id = "09c567afd5784427b568ce3994c57bbc" 
-    client_secret = "626ee57c77b540a882e77568b96cf647"
-    
-    # my personal spotify user_id and playlist_id for two playlists
-
-    abd_id = '22zwjgjvsa7o3q6himwitxuoy'
-    playlist_id_desi = '4bk3qrpg7jLfY9luOzqAky'
-    playlist_liked = '7shUpGkYn0lOchTXXzDk4E'
-    playlist_disliked = "0VfCY7JcZtG0P66SEHnMhr"'''
     
     db_name = "spotify_songs"
     table_name = "english_songs"
